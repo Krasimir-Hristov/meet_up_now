@@ -23,6 +23,10 @@ const config = {
           1: '#1C1F2E',
           2: '#161925',
         },
+        blue: {
+          1: '#0000CD',
+          2: '#191970',
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
