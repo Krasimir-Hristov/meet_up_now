@@ -20,8 +20,9 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import Loader from './Loader';
-import EndCallButton from './EndCallButton';
+
 import { cn } from '@/lib/utils';
+import EndCallButton from './EndCallButton';
 
 type CallLayoutType = 'grid' | 'speaker-left' | 'speaker-right';
 
@@ -33,7 +34,6 @@ const MeetingRoom = () => {
   const [showParticipants, setShowParticipants] = useState(false);
   const { useCallCallingState } = useCallStateHooks();
 
-  // for more detail about types of CallingState see: https://getstream.io/video/docs/react/ui-cookbook/ringing-call/#incoming-call-panel
   const callingState = useCallCallingState();
 
   if (callingState !== CallingState.JOINED) {
@@ -65,9 +65,8 @@ const MeetingRoom = () => {
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
-      {/* video layout and call controls */}
-      <div className='fixed bottom-0 flex w-full items-center justify-center gap-5'>
-        <CallControls onLeave={() => router.push(`/`)} />
+      <div className='fixed bottom-0 flex flex-wrap w-full items-center justify-center gap-5'>
+        <CallControls onLeave={() => router.push('/')} />
 
         <DropdownMenu>
           <div className='flex items-center'>
@@ -79,6 +78,7 @@ const MeetingRoom = () => {
             {['Grid', 'Speaker-Left', 'Speaker-Right'].map((item, index) => (
               <div key={index}>
                 <DropdownMenuItem
+                  className='cursor-pointer'
                   onClick={() =>
                     setLayout(item.toLowerCase() as CallLayoutType)
                   }
